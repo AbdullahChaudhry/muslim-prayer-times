@@ -4,7 +4,7 @@ getPrayerTimes();
 function getPrayerTimes() {
 
   // const url = 'http://cors-proxy.htmldriven.com/?url=http://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
-  const url  = 'http://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
+  const url  = 'https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
   var xhr = new XMLHttpRequest();
   xhr.open('GET', url);
   xhr.send();
@@ -20,7 +20,7 @@ function getPrayerTimes() {
       var asr = timeFormat(data.items[0].asr);
       var maghrib = timeFormat(data.items[0].maghrib);
       var isha = timeFormat(data.items[0].isha);
-      
+
       setPrayerTimes(fajr, sunrise, dhuhr, asr, maghrib, isha);
     }
     else {
