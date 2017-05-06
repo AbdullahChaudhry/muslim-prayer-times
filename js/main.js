@@ -3,7 +3,9 @@ getPrayerTimes();
 // get quote from api
 function getPrayerTimes() {
 
-  const url = 'http://cors-proxy.htmldriven.com/?url=https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
+  // const url = 'http://cors-proxy.htmldriven.com/?url=https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
+
+  const url = 'http://anyorigin.com/go/?url=https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', url);
