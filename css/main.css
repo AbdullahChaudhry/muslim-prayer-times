@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+#container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 25vh;
+  background-color: lightblue;
+  font-family: 'Oswald', sans-serif;
+  border-radius: 4px;
+}
+
+.prayer {
+  display: flex;
+  flex-direction: row;
+  font-size: 2em;
+  margin: 12px;
+}
+
+.prayer-name {
+  width: 70%;
+}
+
+.prayer-time {
+  width: 30%;
+  text-align: left;
+}
