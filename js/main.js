@@ -13,8 +13,8 @@ function setDate(data) {
 
 // format the time
 function timeFormat(t) {
-  t = t.replace(/[A-Z\s]/ig, '');
-  return t.length <= 4 ? '0' + t : t;
+  t = t.replace(/:/, '.');
+  return t;
 }
 
 function setPrayerTimes(times) {
