@@ -10,10 +10,11 @@ html {
 
 body {
   margin: 0;
+  height: 100vh;
   background-image: url('../img/mosque.jpg');
   background-repeat: no-repeat;
   background-position: top;
-  background-size: auto;
+  background-size: cover;
 }
 
 #container {
