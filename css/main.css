@@ -17,35 +17,35 @@ body {
 }
 
 #container {
-
-  padding: 10px;
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 300px;
   margin: 0 auto;
-  /*background-color: lightblue;*/
   border-radius: 4px;
   font-family: 'Oswald', sans-serif;
+  text-shadow: 1px 1px white;
   letter-spacing: 0.05em;
 }
 
 #islamicDate {
+  margin-top: 30px;
   text-align: center;
   font-size: 2.5em;
 }
 
 #location {
   text-align: center;
-  font-size: 1.4em;
-  margin: 5px;
+  font-size: 1.5em;
+  margin: 3px;
 }
 
 .prayer {
   display: flex;
   flex-direction: row;
-  font-size: 2.2em;
+  font-size: 2em;
   margin-top: 20px;
-  margin-left: 20px;
+  text-align: left;
+  padding-left: 25px;
 }
 
 .prayer:last-child {
@@ -53,11 +53,10 @@ body {
 }
 
 .prayer-name {
-  width: 60%;
+  width: 50%;
 }
 
 .prayer-time {
-  margin-right: 20px;
-  width: 40%;
+  width: 50%;
   padding:0;
 }
