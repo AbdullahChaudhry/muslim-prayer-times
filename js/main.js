@@ -1,46 +1,37 @@
-getPrayerTimes();
+$(document).ready(function() {
+    // get prayer times
+    $.getJSON('http://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6&jsoncallback=?', setPrayerTimes)
 
-// get quote from api
-function getPrayerTimes() {
+    // get islamic calander date
+    $.getJSON('http://api.aladhan.com/gToH?', setDate);
+});
 
-  // const url = 'http://cors-proxy.htmldriven.com/?url=https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
-
-  const url = 'http://anyorigin.com/go/?url=https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6';
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.send();
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      var object = JSON.parse(xhr.responseText);
-      var data = JSON.parse(object.body);
-
-      // store prayer times
-      var fajr = timeFormat(data.items[0].fajr);
-      var sunrise = timeFormat(data.items[0].shurooq);
-      var dhuhr = timeFormat(data.items[0].dhuhr);
-      var asr = timeFormat(data.items[0].asr);
-      var maghrib = timeFormat(data.items[0].maghrib);
-      var isha = timeFormat(data.items[0].isha);
-
-      setPrayerTimes(fajr, sunrise, dhuhr, asr, maghrib, isha);
-    }
-    else {
-      console.log("error: " + xhr.status);
-    }
-  }
+function setDate(data) {
+  var islamicDate = document.getElementById('islamicDate');
+  islamicDate.innerText = data.data.hijri.day + ' ' + data.data.hijri.month.en + ', ' + data.data.hijri.year;
 }
 
 // format the time
 function timeFormat(t) {
-  t = t.replace(/[A-Z\s]/ig, '').replace(/:/, '.');
+  t = t.replace(/[A-Z\s]/ig, '');
   return t.length <= 4 ? '0' + t : t;
 }
 
-// set the quote to textbox
-function setPrayerTimes(fajr, sunrise, dhuhr, asr, maghrib, isha) {
+function setPrayerTimes(times) {
+
+  // store properties as variables
+  var location = times.city + ", " + times.country;
+  var fajr = timeFormat(times.items[0].fajr);
+  var shurooq = timeFormat(times.items[0].shurooq);
+  var dhuhr = timeFormat(times.items[0].dhuhr);
+  var asr = timeFormat(times.items[0].asr);
+  var maghrib = timeFormat(times.items[0].maghrib);
+  var isha = timeFormat(times.items[0].isha);
+
+  // set the prayer times to textbox
+  document.getElementById('location').innerText = location;
   document.getElementById('fajr').innerText = fajr;
-  document.getElementById('sunrise').innerText = sunrise;
+  document.getElementById('sunrise').innerText = shurooq;
   document.getElementById('dhuhr').innerText = dhuhr;
   document.getElementById('asr').innerText = asr;
   document.getElementById('maghrib').innerText = maghrib;

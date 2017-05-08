@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Oswald|Sarpanch:400,700');
 
 html {
   box-sizing: border-box;
@@ -13,29 +13,49 @@ body {
 }
 
 #container {
+  background-image: url('../img/mosque.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
   padding: 10px;
   display: flex;
   flex-direction: column;
   max-width: 400px;
   margin: 0 auto;
-  margin-top: 25vh;
   background-color: lightblue;
-  font-family: 'Oswald', sans-serif;
   border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+#islamicDate {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+#location {
+  text-align: center;
+  font-size: 1.4em;
+  margin: 5px;
 }
 
 .prayer {
   display: flex;
   flex-direction: row;
-  font-size: 2em;
-  margin: 12px;
+  font-size: 2.2em;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.prayer:last-child {
+  margin-bottom: 20px;
 }
 
 .prayer-name {
-  width: 70%;
+  width: 80%;
 }
 
 .prayer-time {
-  width: 30%;
-  text-align: left;
+  margin-right: 20px;
+  width: 20%;
+  padding:0;
 }
