@@ -1,9 +1,9 @@
 $(document).ready(function() {
     // get prayer times
-    $.getJSON('http://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6&jsoncallback=?', setPrayerTimes)
+    $.getJSON('https://muslimsalat.com/daily.json?key=48ac1b295a79364e5197c342429ab6e6&jsoncallback=?', setPrayerTimes)
 
     // get islamic calander date
-    $.getJSON('http://api.aladhan.com/gToH?', setDate);
+    $.getJSON('https://api.aladhan.com/gToH?', setDate);
 });
 
 function setDate(data) {
