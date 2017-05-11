@@ -11,7 +11,6 @@ html {
 body {
   margin: 0;
   height: 100vh;
-  background-image: url('../img/mosque.jpg');
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -20,16 +19,12 @@ body {
 #container {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 320px;
   margin: 0 auto;
-  border-radius: 4px;
-  font-family: 'Oswald', sans-serif;
-  text-shadow: 1px 1px white;
-  letter-spacing: 0.05em;
 }
 
 #islamicDate {
-  margin-top: 30px;
+  padding-top: 5vh;
   text-align: center;
   font-size: 2.5em;
 }
@@ -37,13 +32,20 @@ body {
 #location {
   text-align: center;
   font-size: 1.5em;
-  margin: 3px;
+  margin-top: 3px;
+  margin-bottom: 30px;
+}
+
+#islamicDate, #location, #container {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  text-shadow: 0.5px 0.5px white;
 }
 
 .prayer {
   display: flex;
   flex-direction: row;
-  font-size: 2em;
+  font-size: 2.5em;
   margin-top: 20px;
   text-align: left;
   padding-left: 25px;
@@ -60,4 +62,10 @@ body {
 .prayer-time {
   width: 50%;
   padding:0;
+}
+
+.prayer, #islamicDate, #location {
+  text-shadow: 3px 2px darkblue;
+  font-weight: bold;
+  letter-spacing: 0.02em;
 }
