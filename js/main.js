@@ -10,7 +10,7 @@ $(document).ready(function() {
 });
 
 function getWallpaper() {
-  var rand = Math.floor(Math.random() * 9);
+  var rand = Math.floor(Math.random() * 8);
   document.body.style.backgroundImage = "url(" + mosques[rand].path + ")";
 
   // debugging
@@ -55,11 +55,6 @@ function getWallpaper() {
   },
   {
       path: 'img/mosque8.jpg',
-      name: 'test',
-      country: 'test'
-  },
-  {
-      path: 'img/mosque9.jpg',
       name: 'test',
       country: 'test'
   }
