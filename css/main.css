@@ -26,12 +26,12 @@ body {
 #islamicDate {
   padding-top: 5vh;
   text-align: center;
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 #location {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
   margin-top: 3px;
   margin-bottom: 30px;
 }
@@ -45,7 +45,7 @@ body {
 .prayer {
   display: flex;
   flex-direction: row;
-  font-size: 2.5em;
+  font-size: 2em;
   margin-top: 20px;
   text-align: left;
   padding-left: 25px;
