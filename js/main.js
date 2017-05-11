@@ -10,8 +10,16 @@ $(document).ready(function() {
 });
 
 function getWallpaper() {
-  var rand = Math.floor(Math.random() * 8);
-  document.body.style.backgroundImage = "url(" + mosques[rand].path + ")";
+  var rand = Math.floor(Math.random() * 9);
+
+  var mosque = mosques[rand];
+
+  // set the background image
+  document.body.style.backgroundImage = "url(" + mosque.path + ")";
+
+  // info box
+  // var info = document.getElementById('info');
+  // info.innerText = mosque.country;
 
   // debugging
   console.log("url(" + mosques[rand].path + ")");
@@ -57,12 +65,30 @@ function getWallpaper() {
       path: 'img/mosque8.jpg',
       name: 'test',
       country: 'test'
+  },
+  {
+      path: 'img/mosque9.jpg',
+      name: 'test',
+      country: 'Cairo'
   }
   ];
 
   function setDate(data) {
+
+    data = data.data;
+
+    // gregorian calander date
+    var gregorianDate = document.getElementById('gregorianDate');
+
+   // abbreviate weekday
+    var weekday = (data.gregorian.weekday.en);
+
+    // set the gregorian date
+    gregorianDate.innerText = weekday + ' ' +  data.gregorian.day + ' ' + data.gregorian.month.en + ' ' + data.gregorian.year;
+
+    // islamic calander date
     var islamicDate = document.getElementById('islamicDate');
-    islamicDate.innerText = data.data.hijri.day + ' ' + data.data.hijri.month.en + ', ' + data.data.hijri.year;
+    islamicDate.innerText = data.hijri.day + ' ' + data.hijri.month.en + ' ' + data.hijri.year;
   }
 
   // format the time

@@ -16,6 +16,19 @@ body {
   background-size: cover;
 }
 
+#islamicDate {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+#gregorianDate {
+  padding-top: 5vh;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -23,32 +36,32 @@ body {
   margin: 0 auto;
 }
 
-#islamicDate {
-  padding-top: 5vh;
-  text-align: center;
-  font-size: 2em;
-}
-
 #location {
   text-align: center;
-  font-size: 1.2em;
-  margin-top: 3px;
-  margin-bottom: 30px;
+  font-size: 1.5em;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 
-#islamicDate, #location, #container {
+.prayer, #islamicDate, #location, #container, #gregorianDate {
   color: #fff;
   font-family: 'Oswald', sans-serif;
-  text-shadow: 0.5px 0.5px white;
+  text-shadow: 2px 1px #000;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+}
+
+#location, #islamicDate {
+  font-weight: 100;
 }
 
 .prayer {
   display: flex;
   flex-direction: row;
   font-size: 2em;
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: left;
-  padding-left: 25px;
+  padding-left: 40px;
 }
 
 .prayer:last-child {
@@ -64,8 +77,14 @@ body {
   padding:0;
 }
 
-.prayer, #islamicDate, #location {
-  text-shadow: 3px 2px darkblue;
-  font-weight: bold;
-  letter-spacing: 0.02em;
+#info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+
+hr {
+  width: 275px;
 }
