@@ -84,7 +84,7 @@ function getWallpaper() {
     var weekday = (data.gregorian.weekday.en);
 
     // set the gregorian date
-    gregorianDate.innerText = weekday + ' ' +  data.gregorian.day + ' ' + data.gregorian.month.en + ' ' + data.gregorian.year;
+    gregorianDate.innerText = weekday + ', ' +  data.gregorian.day + ' ' + data.gregorian.month.en + ' ' + data.gregorian.year;
 
     // islamic calander date
     var islamicDate = document.getElementById('islamicDate');
