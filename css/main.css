@@ -17,7 +17,7 @@ body {
 }
 
 #hijriDate {
-  margin-top: 5px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 1.2em;
 }
@@ -25,6 +25,7 @@ body {
 #gregorianDate {
   padding-top: 5vh;
   margin: 0 auto;
+  margin-bottom: 10px;
   text-align: center;
   font-size: 2em;
 }
@@ -61,7 +62,6 @@ body {
   font-size: 2em;
   margin-top: 15px;
   text-align: left;
-  padding-left: 40px;
 }
 
 .prayer:last-child {
@@ -70,6 +70,11 @@ body {
 
 .prayer-name {
   width: 50%;
+}
+
+.prayer .prayer-name {
+  margin-right: 50px;
+  text-align: end;
 }
 
 .prayer-time {
