@@ -11,6 +11,17 @@ function setWallpaper() {
   document.body.style.backgroundImage = "url(" + mosque.path + ")";
 }
 
+function timeConvert (time) {
+  // Check correct time format and split into components
+  time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+  if (time.length > 1) { // If time format correct
+    time = time.slice (1);  // Remove full string match value
+    time[0] = +time[0] % 12 || 12; // Adjust hours
+  }
+  return time.join ('');
+}
+
 var mosques = [
   {
     path: "img/mosque1.jpg",
@@ -79,12 +90,12 @@ function setPrayerTimes(data) {
   let gregoriandate = `${weekday}, ${day} ${month} ${year}`
   times = data.data.timings;
 
-  var fajr = formatTime(times["Fajr"]);
-  var sunrise = formatTime(times["Sunrise"]);
-  var dhuhr = formatTime(times["Dhuhr"]);
-  var asr = formatTime(times["Asr"]);
-  var maghrib = formatTime(times["Maghrib"]);
-  var isha = formatTime(times["Isha"]);
+  var fajr = formatTime(timeConvert(times["Fajr"]));
+  var sunrise = formatTime(timeConvert(times["Sunrise"]));
+  var dhuhr = formatTime(timeConvert(times["Dhuhr"]));
+  var asr = formatTime(timeConvert(times["Asr"]));
+  var maghrib = formatTime(timeConvert(times["Maghrib"]));
+  var isha = formatTime(timeConvert(times["Isha"]));
 
   document.getElementById('gregorianDate').innerText = gregoriandate;
   document.getElementById('hijriDate').innerText = hijriDate;
