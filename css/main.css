@@ -16,7 +16,7 @@ body {
   background-size: cover;
 }
 
-#islamicDate {
+#hijriDate {
   margin-top: 5px;
   text-align: center;
   font-size: 1.2em;
@@ -43,7 +43,7 @@ body {
   margin-bottom: 10px;
 }
 
-.prayer, #islamicDate, #location, #container, #gregorianDate {
+.prayer, #hijriDate, #location, #container, #gregorianDate {
   color: #fff;
   font-family: 'Oswald', sans-serif;
   text-shadow: 2px 1px #000;
@@ -51,7 +51,7 @@ body {
   letter-spacing: 0.02em;
 }
 
-#location, #islamicDate {
+#location, #hijriDate {
   font-weight: 100;
 }
 
