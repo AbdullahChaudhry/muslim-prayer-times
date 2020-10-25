@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $.getJSON("http://api.aladhan.com/v1/timingsByCity?city=London&country=United Kingdom&method=8", setPrayerTimes);
+  $.getJSON("https://api.aladhan.com/v1/timingsByCity?city=London&country=United Kingdom&method=8", setPrayerTimes);
 
   setWallpaper();
 });
