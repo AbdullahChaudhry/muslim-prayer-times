@@ -1,8 +1,19 @@
-$(document).ready(function () {
-  $.getJSON("https://api.aladhan.com/v1/timingsByCity?city=London&country=United Kingdom&method=8", setPrayerTimes);
+const endpoint = "https://api.aladhan.com/v1/timingsByCity"
+const country = "United Kingdom";
+const city = "London";
+const method = 8;
+const url = `${endpoint}?city=${city}&country=${country}&method=${method}`
 
-  setWallpaper();
-});
+document.onreadystatechange = function () {
+  if (document.readyState === 'interactive') {
+    fetch(url)
+      .then(res => res.json())
+      .then(value => {
+        setWallpaper();
+        setPrayerTimes(value)
+      })
+  }
+}
 
 function setWallpaper() {
   var rand = Math.floor(Math.random() * 9);
@@ -24,49 +35,31 @@ function timeConvert (time) {
 
 var mosques = [
   {
-    path: "img/mosque1.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque1.jpg"
   },
   {
-    path: "img/mosque2.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque2.jpg"
   },
   {
-    path: "img/mosque3.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque3.jpg"
   },
   {
-    path: "img/mosque4.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque4.jpg"
   },
   {
-    path: "img/mosque5.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque5.jpg"
   },
   {
-    path: "img/mosque6.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque6.jpg"
   },
   {
-    path: "img/mosque7.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque7.jpg"
   },
   {
-    path: "img/mosque8.jpg",
-    name: "test",
-    country: "test",
+    path: "img/mosque8.jpg"
   },
   {
-    path: "img/mosque9.jpg",
-    name: "test",
-    country: "Cairo",
+    path: "img/mosque9.jpg"
   },
 ];
 
