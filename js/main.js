@@ -26,7 +26,7 @@ document.onreadystatechange = function () {
 }
 
 function setWallpaper() {
-  var rand = Math.floor(Math.random() * 9);
+  var rand = Math.floor(Math.random() * 7);
   var mosque = mosques[rand];
 
   document.body.style.backgroundImage = "url(" + mosque.path + ")";
@@ -45,6 +45,9 @@ function timeConvert (time) {
 
 var mosques = [
   {
+    path: "img/mosque0.jpg"
+  },
+  {
     path: "img/mosque1.jpg"
   },
   {
@@ -60,17 +63,11 @@ var mosques = [
     path: "img/mosque5.jpg"
   },
   {
-    path: "img/mosque6.jpg"
-  },
-  {
     path: "img/mosque7.jpg"
   },
   {
     path: "img/mosque8.jpg"
-  },
-  {
-    path: "img/mosque9.jpg"
-  },
+  }
 ];
 
 function formatTime(t) {
