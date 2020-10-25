@@ -4,14 +4,24 @@ const city = "London";
 const method = 8;
 const url = `${endpoint}?city=${city}&country=${country}&method=${method}`
 
+const gregorianDateElem = document.getElementById('gregorianDate');
+const hijriDateElem = document.getElementById('hijriDate');
+const fajrElem = document.getElementById("fajr");
+const sunriseElem = document.getElementById('sunrise');
+const dhuhrElem = document.getElementById('dhuhr');
+const asrElem = document.getElementById('asr');
+const maghribElem = document.getElementById('maghrib');
+const ishaElem = document.getElementById('isha');
+
 document.onreadystatechange = function () {
   if (document.readyState === 'interactive') {
     fetch(url)
       .then(res => res.json())
       .then(value => {
         setWallpaper();
-        setPrayerTimes(value)
+        setPrayerTimes(value.data)
       })
+      .catch(err => console.log(err))
   }
 }
 
@@ -69,19 +79,23 @@ function formatTime(t) {
 }
 
 function setPrayerTimes(data) {
-  let weekday = data.data.date.gregorian.weekday.en;
-  let day = data.data.date.gregorian.day
-  let month = data.data.date.gregorian.month.en
-  let year = data.data.date.gregorian.year
+  let gregorian = data.date.gregorian;
+  let hijri = data.date.hijri;
 
-  let hijriWeekday = data.data.date.hijri.day;
-  let hijriMonth = data.data.date.hijri.month.en;
-  let hijriYear = data.data.date.hijri.year;
-
-  hijriDate = `${hijriWeekday} ${hijriMonth} ${hijriYear}`
+  let weekday = gregorian.weekday.en;
+  let day = gregorian.day
+  let month = gregorian.month.en
+  let year = gregorian.year
 
   let gregoriandate = `${weekday}, ${day} ${month} ${year}`
-  times = data.data.timings;
+
+  let hijriWeekday = hijri.day;
+  let hijriMonth = hijri.month.en;
+  let hijriYear = hijri.year;
+
+  let hijriDate = `${hijriWeekday} ${hijriMonth} ${hijriYear}`
+
+  let times = data.timings;
 
   var fajr = formatTime(timeConvert(times["Fajr"]));
   var sunrise = formatTime(timeConvert(times["Sunrise"]));
@@ -90,12 +104,12 @@ function setPrayerTimes(data) {
   var maghrib = formatTime(timeConvert(times["Maghrib"]));
   var isha = formatTime(timeConvert(times["Isha"]));
 
-  document.getElementById('gregorianDate').innerText = gregoriandate;
-  document.getElementById('hijriDate').innerText = hijriDate;
-  document.getElementById("fajr").innerText = fajr;
-  document.getElementById('sunrise').innerText = sunrise;
-  document.getElementById('dhuhr').innerText = dhuhr;
-  document.getElementById('asr').innerText = asr;
-  document.getElementById('maghrib').innerText = maghrib;
-  document.getElementById('isha').innerText = isha;
+  gregorianDateElem.innerText = gregoriandate
+  hijriDateElem.innerText = hijriDate
+  fajrElem.innerText = fajr
+  sunriseElem.innerText = sunrise
+  dhuhrElem.innerText = dhuhr
+  asrElem.innerText = asr
+  maghribElem.innerText = maghrib
+  ishaElem.innerText = isha
 }
