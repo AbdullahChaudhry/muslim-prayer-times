@@ -1,0 +1,23 @@
+{
+  "name": "muslim-prayer-times",
+  "version": "1.0.0",
+  "description": "A simple app that displays the daily prayer times based on the user's location.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdullahChaudhry/muslim-prayer-times.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdullahChaudhry/muslim-prayer-times/issues"
+  },
+  "homepage": "https://github.com/AbdullahChaudhry/muslim-prayer-times#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

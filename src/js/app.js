@@ -4,6 +4,8 @@ const city = "London";
 const method = 8;
 const url = `${endpoint}?city=${city}&country=${country}&method=${method}`
 
+const imgPath = "src/static/img"
+
 const gregorianDateElem = document.getElementById('gregorianDate');
 const hijriDateElem = document.getElementById('hijriDate');
 const fajrElem = document.getElementById("fajr");
@@ -29,7 +31,7 @@ function setWallpaper() {
   var rand = Math.floor(Math.random() * 2);
   var mosque = mosques[rand];
 
-  document.body.style.backgroundImage = "url(" + mosque.path + ")";
+  document.body.style.backgroundImage = `url(${imgPath}/${mosque.filename})`
 }
 
 function timeConvert (time) {
@@ -45,10 +47,10 @@ function timeConvert (time) {
 
 var mosques = [
   {
-    path: "img/mosque1.jpg"
+    filename: "mosque1.jpg"
   },
   {
-    path: "img/mosque2.jpg"
+    filename: "mosque2.jpg"
   }
 ];
 
