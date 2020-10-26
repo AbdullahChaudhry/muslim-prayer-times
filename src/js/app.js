@@ -15,12 +15,23 @@ const asrElem = document.getElementById('asr');
 const maghribElem = document.getElementById('maghrib');
 const ishaElem = document.getElementById('isha');
 
+var mosques = [
+  {
+    filename: "mosque1.jpg"
+  },
+  {
+    filename: "mosque2.jpg"
+  }
+];
+
+setWallpaper();
+
 document.onreadystatechange = function () {
   if (document.readyState === 'interactive') {
     fetch(url)
       .then(res => res.json())
       .then(value => {
-        setWallpaper();
+        // setWallpaper();
         setPrayerTimes(value.data)
       })
       .catch(err => console.log(err))
@@ -44,15 +55,6 @@ function timeConvert (time) {
   }
   return time.join ('');
 }
-
-var mosques = [
-  {
-    filename: "mosque1.jpg"
-  },
-  {
-    filename: "mosque2.jpg"
-  }
-];
 
 function formatTime(t) {
   t = t.replace(/:/, ".");
