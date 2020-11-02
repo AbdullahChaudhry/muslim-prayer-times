@@ -2,8 +2,20 @@ import { PrayerTimesService, WallpaperService } from './services';
 import { formatTime, renderTemplate } from './utils';
 import { PrayerModel } from './models'
 
-const template = `
-  <div id="gregorianDate">{{gregorianDate}}</div>
+import '../node_modules/reflect-metadata/Reflect.js'
+
+// import 'reflect-metadata';
+
+function Component(options: any) {
+  return function decorator(klass: any) {
+    Reflect.defineMetadata("component", options, klass)
+  }
+}
+
+@Component({
+  selector: "app",
+  template: `
+    <div id="gregorianDate">{{gregorianDate}}</div>
     <div id='hijriDate'>{{hijriDate}}</div>
     <div id="location"></div>
     <hr>
@@ -33,11 +45,8 @@ const template = `
         <div class="prayer-time" id="isha">{{isha}}</div>
       </div>
    </div>;`
-
-class AppComponent {
-  public _selector: string = "app"
-  public _template: string = template
-  
+})
+class AppComponent {  
   private wallpaperService: WallpaperService;
   private prayerTimesService: PrayerTimesService;
 
@@ -58,6 +67,8 @@ class AppComponent {
   }
 
   init(): Promise<any> {
+    console.log(Reflect)
+
     const wallpaperPromise = this.wallpaperService.getRandom().then(path => {
       this.currentWallpaper = path;
       this.setWallpaper(path)
@@ -96,8 +107,10 @@ class AppComponent {
 }
 
 function render(instance: any) {
-  const selector = instance._selector;
-  const template = instance._template;
+  const metadata = Reflect.getMetadata("component", AppComponent)
+  
+  const selector = metadata.selector;
+  const template = metadata.template;
   const HTMLMarkup = renderTemplate(template, instance)
   const appElem: HTMLElement = <HTMLElement>document.getElementById(selector);
   appElem.innerHTML = HTMLMarkup;
