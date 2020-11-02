@@ -1,13 +1,11 @@
 import { PrayerTimesService, WallpaperService } from "./services";
-import { PrayerModel, MosqueModel } from './models'
+import { PrayerModel } from './models'
 import { formatTime } from "./utils/time";
-
-const imgPath: string = "src/static/img";
 
 const wallpaperService = new WallpaperService();
 wallpaperService
   .getRandom()
-  .then((mosque: MosqueModel) => renderWallpaper(mosque));
+  .then((path: string) => renderWallpaper(path));
 
 document.onreadystatechange = function () {
   if (document.readyState === "complete") {
@@ -19,8 +17,8 @@ document.onreadystatechange = function () {
   }
 };
 
-function renderWallpaper(mosque: MosqueModel) {
-  document.body.style.backgroundImage = `url(${imgPath}/${mosque.filename})`;
+function renderWallpaper(path: string) {
+  document.body.style.backgroundImage = `url(${path})`;
 }
 
 function render(data: any) {

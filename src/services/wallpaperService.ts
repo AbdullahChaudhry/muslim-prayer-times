@@ -1,5 +1,7 @@
 import { MosqueModel } from "../models";
 
+
+
 export class WallpaperService {
   mosques: MosqueModel[] = [
     {
@@ -10,9 +12,13 @@ export class WallpaperService {
     }
   ];
 
-  getRandom(): Promise<MosqueModel> {
+  getRandom(): Promise<string> {
     const rand = Math.floor(Math.random() * this.mosques.length);
-    const mosque = this.mosques[rand]
-    return Promise.resolve(mosque)
+    const mosque = this.mosques[rand].filename;
+
+    const imgPath: string = "src/static/img";
+    const path = `${imgPath}/${mosque}`;
+
+    return Promise.resolve(path)
   }
 }
