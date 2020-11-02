@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Oswald|Sarpanch:400,700');
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+
+#hijriDate {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+#gregorianDate {
+  padding-top: 5vh;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 2em;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+#location {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.prayer, #hijriDate, #location, #container, #gregorianDate {
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  text-shadow: 2px 1px #000;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+}
+
+#location, #hijriDate {
+  font-weight: 100;
+}
+
+.prayer {
+  display: flex;
+  flex-direction: row;
+  font-size: 2em;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.prayer:last-child {
+  margin-bottom: 20px;
+}
+
+.prayer-name {
+  width: 50%;
+}
+
+.prayer .prayer-name {
+  margin-right: 50px;
+  text-align: end;
+}
+
+.prayer-time {
+  width: 50%;
+  padding:0;
+}
+
+#info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+
+hr {
+  width: 275px;
+}
