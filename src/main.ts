@@ -35,10 +35,13 @@ const template = `
    </div>;`
 
 class AppComponent {
+  public _selector: string = "app"
+  public _template: string = template
+  
   private wallpaperService: WallpaperService;
   private prayerTimesService: PrayerTimesService;
 
-  public _template: string = template
+  
   public currentWallpaper: string|null = null;
   public gregorianDate: string|null = null;
   public hijriDate: string|null = null;
@@ -56,12 +59,12 @@ class AppComponent {
   }
 
   init(): Promise<any> {
-    const promiseA = this.wallpaperService.getRandom().then(path => {
+    const wallpaperPromise = this.wallpaperService.getRandom().then(path => {
       this.currentWallpaper = path;
       this.setWallpaper(path)
     })
     
-    const promiseB = this.prayerTimesService.getPrayerTimes().then(data => {
+    const prayerTimesPromise = this.prayerTimesService.getPrayerTimes().then(data => {
       const gregorian = data.date.gregorian;
       const hijri = data.date.hijri;
       const times = data.timings;
@@ -85,7 +88,7 @@ class AppComponent {
       this.isha = formatTime(times[PrayerModel.Isha]);
     })
 
-    return Promise.all([promiseA, promiseB])
+    return Promise.all([wallpaperPromise, prayerTimesPromise])
   }
 
   setWallpaper(path: string): void {
@@ -96,10 +99,13 @@ class AppComponent {
 function render(appComponent: any) {
   const appInstance = new appComponent();
   appInstance.init().then(() => {
-    const template = renderTemplate(appInstance._template, appInstance)
-    const appElem: HTMLElement = <HTMLElement>document.getElementById("app");
+    const selector = appInstance._selector;
+    const template = appInstance._template;
     
-    appElem.innerHTML = template;
+    const HTMLMarkup = renderTemplate(template, appInstance)
+    const appElem: HTMLElement = <HTMLElement>document.getElementById(selector);
+    
+    appElem.innerHTML = HTMLMarkup;
   })
 }
 
