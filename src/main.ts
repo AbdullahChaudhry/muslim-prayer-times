@@ -2,52 +2,51 @@ import { PrayerTimesService, WallpaperService } from "./services";
 import { PrayerModel } from './models'
 import { formatTime } from "./utils/time";
 
-document.onreadystatechange = function () {
-  if (document.readyState === "complete") {
-    const prayerTimesService = new PrayerTimesService();
-    const wallpaperService = new WallpaperService();
-    
-    wallpaperService
-      .getRandom()
-      .then((path: string) => renderWallpaper(path));
+class AppComponent {
+  private wallpaperService: WallpaperService;
+  private prayerTimesService: PrayerTimesService;
 
-    prayerTimesService
-      .getPrayerTimes()
-      .then((data) => render(data));
+  constructor(wallpaperService = new WallpaperService(), prayerTimesService = new PrayerTimesService()) {
+    this.wallpaperService = wallpaperService;
+    this.prayerTimesService = prayerTimesService;
   }
-};
 
-function renderWallpaper(path: string) {
-  document.body.style.backgroundImage = `url(${path})`;
-}
+  onInit() {
+    this.wallpaperService.getRandom().then(path => this.setWallpaper(path))
+    this.prayerTimesService.getPrayerTimes().then(data => this.render(data))
+  }
 
-function render(data: any) {
-  const gregorian = data.date.gregorian;
-  const hijri = data.date.hijri;
+  setWallpaper(path: string) {
+    document.body.style.backgroundImage = `url(${path})`;
+  }
 
-  const weekday = gregorian.weekday.en;
-  const day = gregorian.day;
-  const month = gregorian.month.en;
-  const year = gregorian.year;
+  render(data: any) {
+    const gregorian = data.date.gregorian;
+    const hijri = data.date.hijri;
 
-  const hijriWeekday = hijri.day;
-  const hijriMonth = hijri.month.en;
-  const hijriYear = hijri.year;
+    const weekday = gregorian.weekday.en;
+    const day = gregorian.day;
+    const month = gregorian.month.en;
+    const year = gregorian.year;
 
-  const gregorianDate = `${weekday}, ${day} ${month} ${year}`;
-  const hijriDate = `${hijriWeekday} ${hijriMonth} ${hijriYear}`;
+    const hijriWeekday = hijri.day;
+    const hijriMonth = hijri.month.en;
+    const hijriYear = hijri.year;
 
-  const times = data.timings;
+    const gregorianDate = `${weekday}, ${day} ${month} ${year}`;
+    const hijriDate = `${hijriWeekday} ${hijriMonth} ${hijriYear}`;
 
-  const fajr = formatTime(times[PrayerModel.Fajr]);
-  const sunrise = formatTime(times[PrayerModel.Sunrise]);
-  const dhuhr = formatTime(times[PrayerModel.Dhuhr]);
-  const asr = formatTime(times[PrayerModel.Asr]);
-  const maghrib = formatTime(times[PrayerModel.Maghrib]);
-  const isha = formatTime(times[PrayerModel.Isha]);
+    const times = data.timings;
 
-  const template = `
-  <div id="gregorianDate">${gregorianDate}</div>
+    const fajr = formatTime(times[PrayerModel.Fajr]);
+    const sunrise = formatTime(times[PrayerModel.Sunrise]);
+    const dhuhr = formatTime(times[PrayerModel.Dhuhr]);
+    const asr = formatTime(times[PrayerModel.Asr]);
+    const maghrib = formatTime(times[PrayerModel.Maghrib]);
+    const isha = formatTime(times[PrayerModel.Isha]);
+
+    const template = `
+    <div id="gregorianDate">${gregorianDate}</div>
       <div id='hijriDate'>${hijriDate}</div>
       <div id="location"></div>
       <hr>
@@ -76,8 +75,16 @@ function render(data: any) {
           <div class="prayer-name">Isha</div>
           <div class="prayer-time" id="isha">${isha}</div>
         </div>
-      </div>;`
+     </div>;`
 
-      const app: HTMLElement = <HTMLElement>document.getElementById('app');
-      app.innerHTML = template
+    const app: HTMLElement = <HTMLElement>document.getElementById('app');
+    app.innerHTML = template
+  }
+} 
+
+document.onreadystatechange = function () {
+  if (document.readyState === "complete") {
+    const app = new AppComponent();
+    app.onInit()
+  };
 }
