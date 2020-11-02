@@ -1,16 +1,10 @@
 import { PrayerTimesService, WallpaperService } from './services';
-import { formatTime, renderTemplate } from './utils';
+import { Component, formatTime, renderTemplate } from './utils';
 import { PrayerModel } from './models'
 
 import '../node_modules/reflect-metadata/Reflect.js'
 
 // import 'reflect-metadata';
-
-function Component(options: any) {
-  return function decorator(klass: any) {
-    Reflect.defineMetadata("component", options, klass)
-  }
-}
 
 @Component({
   selector: "app",
