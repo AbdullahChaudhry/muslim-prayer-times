@@ -3,7 +3,10 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
-    ["babel-plugin-add-import-extension"],
+    ["const-enum", {"transform": "constObject"}],
+    ["babel-plugin-add-import-extension", 
+      { "extension": "js", "replace": true }
+    ],
     ["@babel/plugin-proposal-decorators", {"legacy": true}]
   ]
 }
