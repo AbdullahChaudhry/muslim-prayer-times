@@ -60,6 +60,10 @@ class AppComponent {
     this.prayerTimesService = prayerTimesService;
   }
 
+  setWallpaper(path: string): void {
+    document.body.style.backgroundImage = `url(${path})`;
+  }
+
   init(): Promise<any> {
     console.log(Reflect)
 
@@ -95,13 +99,10 @@ class AppComponent {
     return Promise.all([wallpaperPromise, prayerTimesPromise])
   }
 
-  setWallpaper(path: string): void {
-    document.body.style.backgroundImage = `url(${path})`;
-  }
 }
 
 function render(instance: any) {
-  const metadata = Reflect.getMetadata("component", AppComponent)
+  const metadata = Reflect.getMetadata("component", instance.constructor)
   
   const selector = metadata.selector;
   const template = metadata.template;
