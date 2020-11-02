@@ -1,6 +1,6 @@
-import { PrayerTimesService, WallpaperService } from "./services";
+import { PrayerTimesService, WallpaperService } from './services';
 import { PrayerModel } from './models'
-import { formatTime } from "./utils/time";
+import { formatTime } from './utils/time';
 
 class AppComponent {
   private wallpaperService: WallpaperService;
