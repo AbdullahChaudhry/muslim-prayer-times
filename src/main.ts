@@ -5,22 +5,29 @@ import { formatTime } from "./utils/time";
 class AppComponent {
   private wallpaperService: WallpaperService;
   private prayerTimesService: PrayerTimesService;
+  currentWallpaper: string|null = null;
 
   constructor(wallpaperService = new WallpaperService(), prayerTimesService = new PrayerTimesService()) {
     this.wallpaperService = wallpaperService;
     this.prayerTimesService = prayerTimesService;
   }
 
-  onInit() {
-    this.wallpaperService.getRandom().then(path => this.setWallpaper(path))
-    this.prayerTimesService.getPrayerTimes().then(data => this.render(data))
+  onInit(): void {
+    this.wallpaperService.getRandom().then(path => {
+      this.currentWallpaper = path;
+      this.setWallpaper(path)
+    })
+    
+    this.prayerTimesService.getPrayerTimes().then(data => {
+      this.render(data)
+    })
   }
 
-  setWallpaper(path: string) {
+  setWallpaper(path: string): void {
     document.body.style.backgroundImage = `url(${path})`;
   }
 
-  render(data: any) {
+  render(data: any): void {
     const gregorian = data.date.gregorian;
     const hijri = data.date.hijri;
 
