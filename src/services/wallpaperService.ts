@@ -1,7 +1,5 @@
 import { MosqueModel } from "../models";
 
-
-
 export class WallpaperService {
   mosques: MosqueModel[] = [
     {

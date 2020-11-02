@@ -2,14 +2,14 @@ import { PrayerTimesService, WallpaperService } from "./services";
 import { PrayerModel } from './models'
 import { formatTime } from "./utils/time";
 
-const wallpaperService = new WallpaperService();
-wallpaperService
-  .getRandom()
-  .then((path: string) => renderWallpaper(path));
-
 document.onreadystatechange = function () {
   if (document.readyState === "complete") {
     const prayerTimesService = new PrayerTimesService();
+    const wallpaperService = new WallpaperService();
+    
+    wallpaperService
+      .getRandom()
+      .then((path: string) => renderWallpaper(path));
 
     prayerTimesService
       .getPrayerTimes()
