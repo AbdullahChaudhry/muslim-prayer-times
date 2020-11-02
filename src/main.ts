@@ -41,7 +41,6 @@ class AppComponent {
   private wallpaperService: WallpaperService;
   private prayerTimesService: PrayerTimesService;
 
-  
   public currentWallpaper: string|null = null;
   public gregorianDate: string|null = null;
   public hijriDate: string|null = null;
@@ -96,21 +95,25 @@ class AppComponent {
   }
 }
 
-function render(appComponent: any) {
-  const appInstance = new appComponent();
-  appInstance.init().then(() => {
-    const selector = appInstance._selector;
-    const template = appInstance._template;
-    
-    const HTMLMarkup = renderTemplate(template, appInstance)
-    const appElem: HTMLElement = <HTMLElement>document.getElementById(selector);
-    
-    appElem.innerHTML = HTMLMarkup;
-  })
+function render(instance: any) {
+  const selector = instance._selector;
+  const template = instance._template;
+  const HTMLMarkup = renderTemplate(template, instance)
+  const appElem: HTMLElement = <HTMLElement>document.getElementById(selector);
+  appElem.innerHTML = HTMLMarkup;
 }
 
-document.onreadystatechange = function () {
-  if (document.readyState === "complete") {
-    render(AppComponent)
-  };
+function initComponent(component: any) {
+  const instance = new component();
+  instance.init().then(() => render(instance))
 }
+
+function init() {
+  document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+      initComponent(AppComponent)
+    };
+  }
+}
+
+init()
