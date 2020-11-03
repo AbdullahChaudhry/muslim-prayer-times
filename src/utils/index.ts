@@ -1,3 +1,3 @@
 export * from './time';
-export * from './renderTemplate';
+export * from './compileTemplate';
 export * from './component';

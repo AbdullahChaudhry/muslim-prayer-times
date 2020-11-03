@@ -1,5 +1,5 @@
 import { PrayerTimesService, WallpaperService } from './services';
-import { Component, formatTime, renderTemplate } from './utils';
+import { Component, formatTime, compileTemplate } from './utils';
 import { PrayerModel } from './models'
 
 import '../node_modules/reflect-metadata/Reflect.js'
@@ -106,7 +106,7 @@ function render(instance: any) {
   
   const selector = metadata.selector;
   const template = metadata.template;
-  const HTMLMarkup = renderTemplate(template, instance)
+  const HTMLMarkup = compileTemplate(template, instance)
   const appElem: HTMLElement = <HTMLElement>document.getElementById(selector);
   appElem.innerHTML = HTMLMarkup;
 }

@@ -1,4 +1,4 @@
-export function renderTemplate(template: string, context: any) {
+export function compileTemplate(template: string, context: any) {
   return template.replace(/{{(.*)}}/g, function(x) {
     let str = x.replace("{{", "").replace("}}", "")
     if (str.includes(".")) {
