@@ -3,6 +3,8 @@ import { PrayerTimesService, WallpaperService } from '../services';
 import { formatTime } from '../utils';
 import { PrayerModel } from '../models';
 
+import { render } from '../core/platform-browser-dynamic';
+
 import '../../node_modules/reflect-metadata/Reflect.js'
 
 // import 'reflect-metadata';
@@ -45,16 +47,15 @@ export class AppComponent {
   private wallpaperService: WallpaperService;
   private prayerTimesService: PrayerTimesService;
 
-  public currentWallpaper: string|null = null;
-  public gregorianDate: string|null = null;
-  public hijriDate: string|null = null;
-
-  public fajr: string|null = null;
-  public sunrise: string|null = null;
-  public dhuhr: string|null = null;
-  public asr: string|null = null;
-  public maghrib: string|null = null;
-  public isha: string|null = null;
+  public currentWallpaper: string = "-";
+  public gregorianDate: string = "-";
+  public hijriDate: string = "-";
+  public fajr: string = "-";
+  public sunrise: string = "-";
+  public dhuhr: string = "-";
+  public asr: string = "-";
+  public maghrib: string = "-";
+  public isha: string = "-";
   
   constructor(wallpaperService = new WallpaperService(), prayerTimesService = new PrayerTimesService()) {
     this.wallpaperService = wallpaperService;
@@ -65,7 +66,7 @@ export class AppComponent {
     document.body.style.backgroundImage = `url(${path})`;
   }
 
-  init(): Promise<any> {
+  init(): void {
     console.log(Reflect)
 
     const wallpaperPromise = this.wallpaperService.getRandom().then(path => {
@@ -97,6 +98,7 @@ export class AppComponent {
       this.isha = formatTime(times[PrayerModel.Isha]);
     })
 
-    return Promise.all([wallpaperPromise, prayerTimesPromise])
-  }
+    Promise.all([wallpaperPromise, prayerTimesPromise])
+      .then(() => render(this))
+    }
 }
