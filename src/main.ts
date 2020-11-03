@@ -1,5 +1,6 @@
+import { Component } from './core';
 import { PrayerTimesService, WallpaperService } from './services';
-import { Component, formatTime, compileTemplate } from './utils';
+import { formatTime, compileTemplate } from './utils';
 import { PrayerModel } from './models'
 
 import '../node_modules/reflect-metadata/Reflect.js'
