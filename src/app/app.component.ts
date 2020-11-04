@@ -17,27 +17,27 @@ import '../../node_modules/reflect-metadata/Reflect.js'
     <div id="container">
       <div class="prayer">
         <div class="prayer-name">Fajr</div>
-        <div class="prayer-time">{{fajr}}</div>
+        <div class="prayer-time" id="fajr">{{fajr}}</div>
       </div>
       <div class="prayer">
         <div class="prayer-name">Sunrise</div>
-        <div class="prayer-time">{{sunrise}}</div>
+        <div class="prayer-time" id="sunrise">{{sunrise}}</div>
       </div>
       <div class="prayer">
         <div class="prayer-name">Zuhr</div>
-        <div class="prayer-time">{{dhuhr}}</div>
+        <div class="prayer-time" id="dhuhr">{{dhuhr}}</div>
       </div>
       <div class="prayer">
         <div class="prayer-name">Asr</div>
-        <div class="prayer-time">{{asr}}</div>
+        <div class="prayer-time" id="asr">{{asr}}</div>
       </div>
       <div class="prayer">
         <div class="prayer-name">Maghrib</div>
-        <div class="prayer-time">{{maghrib}}</div>
+        <div class="prayer-time" id="maghrib">{{maghrib}}</div>
       </div>
       <div class="prayer">
         <div class="prayer-name">Isha</div>
-        <div class="prayer-time">{{isha}}</div>
+        <div class="prayer-time" id="isha">{{isha}}</div>
       </div>
    </div>;`
 })
