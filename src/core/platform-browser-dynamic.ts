@@ -14,23 +14,21 @@ export function render(instance: any) {
 
 export function platformBrowserDynamic() {
   function bootstrapComponent(component: any) {
-  
+
     function initComponent(component: any) {
       const instance = new component();
       render(instance).then(() => {
-        instance.init();
+        instance.init().then(() => {
+          render(instance)
+        })
       })
     }
-  
-    function init(component: any) {
-      document.onreadystatechange = function () {
-        if (document.readyState === "complete") {
-          initComponent(component);
-        }
-      };
-    }
-  
-    init(component)
+
+    document.onreadystatechange = function () {
+      if (document.readyState === "complete") {
+        initComponent(component);
+      }
+    };    
   }
   
   return {

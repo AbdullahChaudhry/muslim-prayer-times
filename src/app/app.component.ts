@@ -3,8 +3,6 @@ import { PrayerTimesService, WallpaperService } from '../services';
 import { formatTime } from '../utils';
 import { PrayerModel } from '../models';
 
-import { render } from '../core/platform-browser-dynamic';
-
 import '../../node_modules/reflect-metadata/Reflect.js'
 
 // import 'reflect-metadata';
@@ -66,15 +64,15 @@ export class AppComponent {
     document.body.style.backgroundImage = `url(${path})`;
   }
 
-  init(): void {
+  async init() {
     console.log(Reflect)
 
-    const wallpaperPromise = this.wallpaperService.getRandom().then(path => {
+    await this.wallpaperService.getRandom().then(path => {
       this.currentWallpaper = path;
       this.setWallpaper(path)
     })
     
-    const prayerTimesPromise = this.prayerTimesService.getPrayerTimes().then(data => {
+    await this.prayerTimesService.getPrayerTimes().then(data => {
       const gregorian = data.date.gregorian;
       const hijri = data.date.hijri;
       const times = data.timings;
@@ -97,8 +95,5 @@ export class AppComponent {
       this.maghrib = formatTime(times[PrayerModel.Maghrib]);
       this.isha = formatTime(times[PrayerModel.Isha]);
     })
-
-    Promise.all([wallpaperPromise, prayerTimesPromise])
-      .then(() => render(this))
-    }
+  }
 }
