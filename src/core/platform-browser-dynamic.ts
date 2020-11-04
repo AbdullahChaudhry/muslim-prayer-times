@@ -2,7 +2,7 @@ import { compileTemplate } from "../utils";
 
 let store = {}
 
-function setUpBindings(template: string) {
+function setUpBindings(template: any) {
   // key: propName, value: id
   
   let iterator = template.matchAll(/.*{{(.*)}}.*/g)
@@ -49,7 +49,11 @@ function bootstrapComponent(component: any) {
     if (document.readyState === "complete") {
       render(instance)
         .then(() => {
-          instance.init().then(() => update(instance))
+          instance.init().then(() => {
+            setTimeout(() => {
+              update(instance)
+            }, 5000)
+          })
         })
     }
   };    
