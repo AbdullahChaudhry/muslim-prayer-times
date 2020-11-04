@@ -77,7 +77,6 @@ export class AppComponent {
   }
 
   async init(): Promise<any> {
-    console.log('inside init')
     let path = await this.wallpaperService.getRandom();
     this.setWallpaper(path);
 
