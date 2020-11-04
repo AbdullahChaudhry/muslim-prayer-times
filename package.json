@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npx babel src -d output --extensions '.ts,.tsx' --watch\" \"npx live-server --watch='output'\"",
     "build": "npx rollup --config",
-    "deploy": "yarn build; push-dir --dir=dist --branch=gh-pages --allow-unclean",
+    "deploy": "yarn build; push-dir --dir=dist --branch=gh-pages",
     "tsc": "npx tsc"
   },
   "repository": {
