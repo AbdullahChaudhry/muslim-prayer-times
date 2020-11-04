@@ -168,7 +168,6 @@
       if (!store[propName]) store[propName] = document.getElementById(id);
       result = iterator.next();
     }
-    console.log(store);
   }
   function update(instance) {
     Object.keys(store).forEach((function(key) {
