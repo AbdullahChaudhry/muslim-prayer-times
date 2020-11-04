@@ -49,11 +49,7 @@ function bootstrapComponent(component: any) {
     if (document.readyState === "complete") {
       render(instance)
         .then(() => {
-          instance.init().then(() => {
-            setTimeout(() => {
-              update(instance)
-            }, 5000)
-          })
+          instance.init().then(() => update(instance))
         })
     }
   };    
