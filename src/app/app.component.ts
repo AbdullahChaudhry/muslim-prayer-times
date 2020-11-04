@@ -65,8 +65,6 @@ export class AppComponent {
   }
 
   async init() {
-    console.log(Reflect)
-
     await this.wallpaperService.getRandom().then(path => {
       this.currentWallpaper = path;
       this.setWallpaper(path)
