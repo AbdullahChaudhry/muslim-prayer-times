@@ -156,28 +156,23 @@
     }));
   }
   function render(instance) {
-    var metadata = Reflect.getMetadata("component", instance.constructor);
-    var selector = metadata.selector;
-    var template = metadata.template;
-    var HTMLMarkup = compileTemplate(template, instance);
+    var _a = Reflect.getMetadata("component", instance.constructor), selector = _a.selector, template = _a.template;
+    var compiled = compileTemplate(template, instance);
     var appElem = document.getElementById(selector);
-    appElem.innerHTML = HTMLMarkup;
+    appElem.innerHTML = compiled;
     return Promise.resolve(1);
   }
-  function platformBrowserDynamic() {
-    function bootstrapComponent(component) {
-      function initComponent(component) {
-        var instance = new component;
-        render(instance).then((function() {
-          instance.init().then((function() {
-            render(instance);
-          }));
+  function bootstrapComponent(component) {
+    var instance = new component;
+    document.onreadystatechange = function() {
+      if ("complete" === document.readyState) render(instance).then((function() {
+        instance.init().then((function() {
+          return render(instance);
         }));
-      }
-      document.onreadystatechange = function() {
-        if ("complete" === document.readyState) initComponent(component);
-      };
-    }
+      }));
+    };
+  }
+  function platformBrowserDynamic() {
     return {
       bootstrapComponent: bootstrapComponent
     };
@@ -1003,44 +998,34 @@
     }
     AppComponent.prototype.setWallpaper = function(path) {
       document.body.style.backgroundImage = "url(" + path + ")";
+      this.currentWallpaper = path;
+    };
+    AppComponent.prototype.setPrayerTimes = function(prayerTimes) {
+      this.gregorianDate = prayerTimes.date.gregorian.weekday.en + ", " + prayerTimes.date.gregorian.day + " " + prayerTimes.date.gregorian.month.en + " " + prayerTimes.date.gregorian.year;
+      this.hijriDate = prayerTimes.date.hijri.day + " " + prayerTimes.date.hijri.month.en + " " + prayerTimes.date.hijri.year;
+      this.fajr = formatTime(prayerTimes.timings["Fajr" /* Fajr */ ]);
+      this.sunrise = formatTime(prayerTimes.timings["Sunrise" /* Sunrise */ ]);
+      this.dhuhr = formatTime(prayerTimes.timings["Dhuhr" /* Dhuhr */ ]);
+      this.asr = formatTime(prayerTimes.timings["Asr" /* Asr */ ]);
+      this.maghrib = formatTime(prayerTimes.timings["Maghrib" /* Maghrib */ ]);
+      this.isha = formatTime(prayerTimes.timings["Isha" /* Isha */ ]);
     };
     AppComponent.prototype.init = function() {
       return __awaiter(this, void 0, void 0, (function() {
-        var _this = this;
+        var path, prayerTimes;
         return __generator(this, (function(_a) {
           switch (_a.label) {
            case 0:
-            console.log(Reflect);
-            return [ 4 /*yield*/ , this.wallpaperService.getRandom().then((function(path) {
-              _this.currentWallpaper = path;
-              _this.setWallpaper(path);
-            })) ];
+            return [ 4 /*yield*/ , this.wallpaperService.getRandom() ];
 
            case 1:
-            _a.sent();
-            return [ 4 /*yield*/ , this.prayerTimesService.getPrayerTimes().then((function(data) {
-              var gregorian = data.date.gregorian;
-              var hijri = data.date.hijri;
-              var times = data.timings;
-              var weekday = gregorian.weekday.en;
-              var day = gregorian.day;
-              var month = gregorian.month.en;
-              var year = gregorian.year;
-              var hijriWeekday = hijri.day;
-              var hijriMonth = hijri.month.en;
-              var hijriYear = hijri.year;
-              _this.gregorianDate = weekday + ", " + day + " " + month + " " + year;
-              _this.hijriDate = hijriWeekday + " " + hijriMonth + " " + hijriYear;
-              _this.fajr = formatTime(times["Fajr" /* Fajr */ ]);
-              _this.sunrise = formatTime(times["Sunrise" /* Sunrise */ ]);
-              _this.dhuhr = formatTime(times["Dhuhr" /* Dhuhr */ ]);
-              _this.asr = formatTime(times["Asr" /* Asr */ ]);
-              _this.maghrib = formatTime(times["Maghrib" /* Maghrib */ ]);
-              _this.isha = formatTime(times["Isha" /* Isha */ ]);
-            })) ];
+            path = _a.sent();
+            this.setWallpaper(path);
+            return [ 4 /*yield*/ , this.prayerTimesService.getPrayerTimes() ];
 
            case 2:
-            _a.sent();
+            prayerTimes = _a.sent();
+            this.setPrayerTimes(prayerTimes);
             return [ 2 /*return*/ ];
           }
         }));
