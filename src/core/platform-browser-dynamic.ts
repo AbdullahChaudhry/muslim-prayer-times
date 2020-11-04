@@ -1,6 +1,6 @@
 import { compileTemplate } from "../utils";
 
-let store = {}
+let store: any = {}
 
 function setUpBindings(template: any) {
   // key: propName, value: id
