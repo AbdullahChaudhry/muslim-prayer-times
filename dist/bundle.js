@@ -188,7 +188,9 @@
     document.onreadystatechange = function() {
       if ("complete" === document.readyState) render(instance).then((function() {
         instance.init().then((function() {
-          return update(instance);
+          setTimeout((function() {
+            update(instance);
+          }), 5e3);
         }));
       }));
     };
