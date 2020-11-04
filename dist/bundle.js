@@ -155,11 +155,32 @@
       }), context); else return context[str];
     }));
   }
+  var store = {};
+  function setUpBindings(template) {
+    // key: propName, value: id
+    var iterator = template.matchAll(/.*{{(.*)}}.*/g);
+    var result = iterator.next();
+    while (!result.done) if (result.value) {
+      var element = result.value[0];
+      var propName = result.value[1];
+      var idMatch = element.match(/id=["|'](.*)["|']/);
+      var id = idMatch[1];
+      if (!store[propName]) store[propName] = document.getElementById(id);
+      result = iterator.next();
+    }
+    console.log(store);
+  }
+  function update(instance) {
+    Object.keys(store).forEach((function(key) {
+      store[key].innerText = instance[key];
+    }));
+  }
   function render(instance) {
     var _a = Reflect.getMetadata("component", instance.constructor), selector = _a.selector, template = _a.template;
     var compiled = compileTemplate(template, instance);
     var appElem = document.getElementById(selector);
     appElem.innerHTML = compiled;
+    setUpBindings(template);
     return Promise.resolve(1);
   }
   function bootstrapComponent(component) {
@@ -167,7 +188,7 @@
     document.onreadystatechange = function() {
       if ("complete" === document.readyState) render(instance).then((function() {
         instance.init().then((function() {
-          return render(instance);
+          return update(instance);
         }));
       }));
     };
@@ -1033,7 +1054,7 @@
     };
     AppComponent = __decorate([ Component({
       selector: "app",
-      template: '\n    <div id="gregorianDate">{{gregorianDate}}</div>\n    <div id=\'hijriDate\'>{{hijriDate}}</div>\n    <div id="location"></div>\n    <hr>\n    <div id="container">\n      <div class="prayer">\n        <div class="prayer-name">Fajr</div>\n        <div class="prayer-time">{{fajr}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Sunrise</div>\n        <div class="prayer-time">{{sunrise}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Zuhr</div>\n        <div class="prayer-time">{{dhuhr}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Asr</div>\n        <div class="prayer-time">{{asr}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Maghrib</div>\n        <div class="prayer-time">{{maghrib}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Isha</div>\n        <div class="prayer-time">{{isha}}</div>\n      </div>\n   </div>;'
+      template: '\n    <div id="gregorianDate">{{gregorianDate}}</div>\n    <div id=\'hijriDate\'>{{hijriDate}}</div>\n    <div id="location"></div>\n    <hr>\n    <div id="container">\n      <div class="prayer">\n        <div class="prayer-name">Fajr</div>\n        <div class="prayer-time" id="fajr">{{fajr}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Sunrise</div>\n        <div class="prayer-time" id="sunrise">{{sunrise}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Zuhr</div>\n        <div class="prayer-time" id="dhuhr">{{dhuhr}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Asr</div>\n        <div class="prayer-time" id="asr">{{asr}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Maghrib</div>\n        <div class="prayer-time" id="maghrib">{{maghrib}}</div>\n      </div>\n      <div class="prayer">\n        <div class="prayer-name">Isha</div>\n        <div class="prayer-time" id="isha">{{isha}}</div>\n      </div>\n   </div>;'
     }), __metadata("design:paramtypes", [ Object, Object ]) ], AppComponent);
     return AppComponent;
   }();
