@@ -62,36 +62,25 @@ export class AppComponent {
 
   setWallpaper(path: string): void {
     document.body.style.backgroundImage = `url(${path})`;
+    this.currentWallpaper = path;
   }
 
-  async init() {
-    await this.wallpaperService.getRandom().then(path => {
-      this.currentWallpaper = path;
-      this.setWallpaper(path)
-    })
-    
-    await this.prayerTimesService.getPrayerTimes().then(data => {
-      const gregorian = data.date.gregorian;
-      const hijri = data.date.hijri;
-      const times = data.timings;
+  setPrayerTimes(prayerTimes: any): void {
+    this.gregorianDate = `${prayerTimes.date.gregorian.weekday.en}, ${prayerTimes.date.gregorian.day} ${prayerTimes.date.gregorian.month.en} ${prayerTimes.date.gregorian.year}`;
+    this.hijriDate = `${prayerTimes.date.hijri.day} ${prayerTimes.date.hijri.month.en} ${prayerTimes.date.hijri.year}`;
+    this.fajr = formatTime(prayerTimes.timings[PrayerModel.Fajr]);
+    this.sunrise = formatTime(prayerTimes.timings[PrayerModel.Sunrise]);
+    this.dhuhr = formatTime(prayerTimes.timings[PrayerModel.Dhuhr]);
+    this.asr = formatTime(prayerTimes.timings[PrayerModel.Asr]);
+    this.maghrib = formatTime(prayerTimes.timings[PrayerModel.Maghrib]);
+    this.isha = formatTime(prayerTimes.timings[PrayerModel.Isha]);
+  }
 
-      const weekday = gregorian.weekday.en;
-      const day = gregorian.day;
-      const month = gregorian.month.en;
-      const year = gregorian.year;
-  
-      const hijriWeekday = hijri.day;
-      const hijriMonth = hijri.month.en;
-      const hijriYear = hijri.year;
-  
-      this.gregorianDate = `${weekday}, ${day} ${month} ${year}`;
-      this.hijriDate = `${hijriWeekday} ${hijriMonth} ${hijriYear}`;
-      this.fajr = formatTime(times[PrayerModel.Fajr]);
-      this.sunrise = formatTime(times[PrayerModel.Sunrise]);
-      this.dhuhr = formatTime(times[PrayerModel.Dhuhr]);
-      this.asr = formatTime(times[PrayerModel.Asr]);
-      this.maghrib = formatTime(times[PrayerModel.Maghrib]);
-      this.isha = formatTime(times[PrayerModel.Isha]);
-    })
+  async init(): Promise<any> {
+    let path = await this.wallpaperService.getRandom();
+    this.setWallpaper(path);
+
+    let prayerTimes = await this.prayerTimesService.getPrayerTimes();
+    this.setPrayerTimes(prayerTimes);
   }
 }
