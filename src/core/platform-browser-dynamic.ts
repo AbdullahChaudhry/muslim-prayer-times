@@ -22,7 +22,6 @@ function setUpBindings(template: any) {
       result = iterator.next()
     }
   }
-  console.log(store)
 }
 
 function update(instance: any) {
