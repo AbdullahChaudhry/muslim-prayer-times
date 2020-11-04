@@ -9,19 +9,19 @@ function render(instance: any): Promise<any> {
   return Promise.resolve(1)
 }
 
-export function platformBrowserDynamic() {
-  function bootstrapComponent(component: any) {
-    const instance = new component();
+function bootstrapComponent(component: any) {
+  const instance = new component();
 
-    document.onreadystatechange = function () {
-      if (document.readyState === "complete") {
-        render(instance).then(() => {
-          instance.init().then(() => render(instance))
-        })
-      }
-    };    
-  }
-  
+  document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+      render(instance).then(() => {
+        instance.init().then(() => render(instance))
+      })
+    }
+  };    
+}
+
+export function platformBrowserDynamic() {
   return {
     bootstrapComponent
   }
