@@ -14,9 +14,8 @@ function bootstrapComponent(component: any) {
 
   document.onreadystatechange = function () {
     if (document.readyState === "complete") {
-      render(instance).then(() => {
-        instance.init().then(() => render(instance))
-      })
+      render(instance)
+        .then(() => instance.init())
     }
   };    
 }

@@ -54,7 +54,9 @@ export class AppComponent {
   public asr: string = "-";
   public maghrib: string = "-";
   public isha: string = "-";
-  
+
+  public ids: string[] = ["gregorianDate", "hijriDate", "fajr", "sunrise", "dhuhr", "asr", "maghrib", "isha" ]
+
   constructor(wallpaperService = new WallpaperService(), prayerTimesService = new PrayerTimesService()) {
     this.wallpaperService = wallpaperService;
     this.prayerTimesService = prayerTimesService;
@@ -65,6 +67,15 @@ export class AppComponent {
     this.currentWallpaper = path;
   }
 
+  updateNode(id: string, prop: string) {
+    const node: HTMLElement = <HTMLElement>document.getElementById(id);
+    node[prop] = this[id];
+  }
+
+  update(ids: string[], prop: string) {
+    ids.forEach(id => this.updateNode(id, prop))
+  }
+  
   setPrayerTimes(prayerTimes: any): void {
     this.gregorianDate = `${prayerTimes.date.gregorian.weekday.en}, ${prayerTimes.date.gregorian.day} ${prayerTimes.date.gregorian.month.en} ${prayerTimes.date.gregorian.year}`;
     this.hijriDate = `${prayerTimes.date.hijri.day} ${prayerTimes.date.hijri.month.en} ${prayerTimes.date.hijri.year}`;
@@ -82,5 +93,7 @@ export class AppComponent {
 
     let prayerTimes = await this.prayerTimesService.getPrayerTimes();
     this.setPrayerTimes(prayerTimes);
+
+    this.update(this.ids, "innerText")
   }
 }
