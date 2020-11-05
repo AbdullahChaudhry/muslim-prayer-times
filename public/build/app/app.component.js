@@ -1,13 +1,12 @@
-import { Component } from '../core';
-import { PrayerTimesService, WallpaperService } from '../services';
-import { formatTime } from '../utils';
-import { PrayerModel } from '../models';
+var _dec, _dec2, _dec3, _class;
 
-import '../../../node_modules/reflect-metadata/Reflect.js'
+import { Component } from "../core/index.js";
+import { PrayerTimesService, WallpaperService } from "../services/index.js";
+import { formatTime } from "../utils/index.js";
+import { PrayerModel } from "../models/index.js";
+import '../../../node_modules/reflect-metadata/Reflect.js'; // import 'reflect-metadata';
 
-// import 'reflect-metadata';
-
-@Component({
+export let AppComponent = (_dec = Component({
   selector: "app",
   template: `
     <div id="gregorianDate">{{gregorianDate}}</div>
@@ -40,32 +39,28 @@ import '../../../node_modules/reflect-metadata/Reflect.js'
         <div class="prayer-time" id="isha">{{isha}}</div>
       </div>
    </div>;`
-})
-export class AppComponent {
-  private wallpaperService: WallpaperService;
-  private prayerTimesService: PrayerTimesService;
-
-  public currentWallpaper: string = "-";
-  public gregorianDate: string = "-";
-  public hijriDate: string = "-";
-  public fajr: string = "-";
-  public sunrise: string = "-";
-  public dhuhr: string = "-";
-  public asr: string = "-";
-  public maghrib: string = "-";
-  public isha: string = "-";
+}), _dec2 = Reflect.metadata("design:type", Function), _dec3 = Reflect.metadata("design:paramtypes", [void 0, void 0]), _dec(_class = _dec2(_class = _dec3(_class = class AppComponent {
+  currentWallpaper = "-";
+  gregorianDate = "-";
+  hijriDate = "-";
+  fajr = "-";
+  sunrise = "-";
+  dhuhr = "-";
+  asr = "-";
+  maghrib = "-";
+  isha = "-";
 
   constructor(wallpaperService = new WallpaperService(), prayerTimesService = new PrayerTimesService()) {
     this.wallpaperService = wallpaperService;
     this.prayerTimesService = prayerTimesService;
   }
 
-  setWallpaper(path: string): void {
+  setWallpaper(path) {
     document.body.style.backgroundImage = `url(${path})`;
     this.currentWallpaper = path;
   }
-  
-  setPrayerTimes(prayerTimes: any): void {
+
+  setPrayerTimes(prayerTimes) {
     this.gregorianDate = `${prayerTimes.date.gregorian.weekday.en}, ${prayerTimes.date.gregorian.day} ${prayerTimes.date.gregorian.month.en} ${prayerTimes.date.gregorian.year}`;
     this.hijriDate = `${prayerTimes.date.hijri.day} ${prayerTimes.date.hijri.month.en} ${prayerTimes.date.hijri.year}`;
     this.fajr = formatTime(prayerTimes.timings[PrayerModel.Fajr]);
@@ -76,11 +71,11 @@ export class AppComponent {
     this.isha = formatTime(prayerTimes.timings[PrayerModel.Isha]);
   }
 
-  async init(): Promise<any> {
+  async init() {
     let path = await this.wallpaperService.getRandom();
     this.setWallpaper(path);
-
     let prayerTimes = await this.prayerTimesService.getPrayerTimes();
     this.setPrayerTimes(prayerTimes);
   }
-}
+
+}) || _class) || _class) || _class);
