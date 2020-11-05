@@ -14,7 +14,7 @@ export class WallpaperService {
     const rand = Math.floor(Math.random() * this.mosques.length);
     const mosque = this.mosques[rand].filename;
 
-    const imgPath: string = "src/static/img";
+    const imgPath: string = "static/img";
     const path = `${imgPath}/${mosque}`;
 
     return Promise.resolve(path)

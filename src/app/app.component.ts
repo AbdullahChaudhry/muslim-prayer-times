@@ -3,7 +3,7 @@ import { PrayerTimesService, WallpaperService } from '../services';
 import { formatTime } from '../utils';
 import { PrayerModel } from '../models';
 
-import '../../../node_modules/reflect-metadata/Reflect.js'
+import '../../node_modules/reflect-metadata/Reflect.js'
 
 // import 'reflect-metadata';
 
