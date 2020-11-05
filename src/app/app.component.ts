@@ -39,7 +39,7 @@ import '../../node_modules/reflect-metadata/Reflect.js'
         <div class="prayer-name">Isha</div>
         <div class="prayer-time" id="isha">{{isha}}</div>
       </div>
-   </div>;`
+   </div>`
 })
 export class AppComponent {
   private wallpaperService: WallpaperService;
