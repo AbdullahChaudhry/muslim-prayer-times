@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npx babel src -d public/build --extensions '.ts,.tsx' --watch\" \"npx live-server --mount='/:public' --watch='public/build'\"",
     "build": "rm -rf public/build; npx rollup --config",
-    "deploy": "yarn build; push-dir --dir=dist --branch=gh-pages",
+    "deploy": "yarn build; push-dir --dir=public --branch=gh-pages",
     "tsc": "npx tsc"
   },
   "repository": {
