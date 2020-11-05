@@ -7,6 +7,9 @@ export class WallpaperService {
     },
     {
       filename: "mosque2.jpg",
+    },
+    {
+      filename: "mosque3.jpg",
     }
   ];
 
