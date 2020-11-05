@@ -115,4 +115,4 @@ output
 dist
 
 # build
-public/build
+public/build/*
