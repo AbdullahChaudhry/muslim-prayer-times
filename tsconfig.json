@@ -3,6 +3,14 @@
     "noEmit": true,
     "strict": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core": ["src/core/index.ts"],
+      "@components": ["src/components"],
+      "@services": ["src/services/index.ts"],
+      "@utils": ["src/utils/index.ts"],
+      "@models": ["src/models/index.ts"]
+    }
   }
 }
