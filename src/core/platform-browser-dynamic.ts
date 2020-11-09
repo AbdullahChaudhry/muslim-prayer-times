@@ -1,4 +1,4 @@
-import { compileTemplate } from "../utils";
+import { compileTemplate } from "@utils";
 
 let store: any = {}
 

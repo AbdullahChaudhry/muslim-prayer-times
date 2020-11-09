@@ -1,11 +1,10 @@
-import { Component } from '../core';
-import { PrayerTimesService, WallpaperService } from '../services';
-import { formatTime } from '../utils';
-import { PrayerModel } from '../models';
+import { Component } from '@core';
+import { PrayerTimesService, WallpaperService } from '@services';
+import { formatTime } from '@utils';
+import { PrayerModel } from '@models';
 
-import '../../node_modules/reflect-metadata/Reflect.js'
-
-// import 'reflect-metadata';
+import 'reflect-metadata';
+console.log(Reflect)
 
 @Component({
   selector: "app",

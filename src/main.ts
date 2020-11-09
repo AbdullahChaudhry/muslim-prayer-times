@@ -1,5 +1,5 @@
-import { AppComponent } from "./app/app.component";
-import { platformBrowserDynamic } from './core';
+import { AppComponent } from '@components';
+import { platformBrowserDynamic } from '@core';
 
 platformBrowserDynamic()
   .bootstrapComponent(AppComponent)

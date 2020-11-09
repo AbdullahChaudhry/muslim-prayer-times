@@ -1,4 +1,4 @@
-import { MosqueModel } from "../models";
+import type { MosqueModel } from "@models";
 
 export class WallpaperService {
   mosques: MosqueModel[] = [
